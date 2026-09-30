@@ -52,14 +52,5 @@ if solve(0):
 else:
     print("No solution exists")
 
-RESULT;
 
-Solution:
-Q . . . . . . . 
-. . . . Q . . . 
-. . . . . . . Q 
-. . . . . Q . . 
-. . Q . . . . . 
-. . . . . . Q . 
-. Q . . . . . . 
-. . . Q . . . . 
+
