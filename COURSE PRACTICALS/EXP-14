@@ -1,0 +1,25 @@
+from sklearn.tree import DecisionTreeClassifier
+# Training data
+X = [
+    [1, 1],
+    [1, 0],
+    [0, 1],
+    [0, 0],
+    [1, 1],
+    [0, 0]
+]
+
+# Labels: 1 = Play, 0 = Don't Play
+y = [1, 1, 1, 0, 1, 0]
+
+# Create the decision tree
+model = DecisionTreeClassifier(random_state=0)
+model.fit(X, y)
+
+# Predict for new data
+prediction = model.predict([[1, 0]])
+
+if prediction[0] == 1:
+    print("Play")
+else:
+    print("Don't Play")
