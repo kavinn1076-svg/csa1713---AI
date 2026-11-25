@@ -1,0 +1,35 @@
+import re
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+
+reviews = [
+    "This movie was wonderful and enjoyable",
+    "I loved the excellent acting",
+    "The story was fantastic",
+    "This movie was boring and disappointing",
+    "I hated the terrible acting",
+    "The story was dull"
+]
+
+# 1 = positive, 0 = negative
+labels = [1, 1, 1, 0, 0, 0]
+
+def clean_text(text):
+    return re.sub(r"[^a-z\s]", "", text.lower())
+
+model = Pipeline([
+    ("tfidf", TfidfVectorizer(
+        preprocessor=clean_text,
+        stop_words="english"
+    )),
+    ("classifier", MultinomialNB())
+])
+
+model.fit(reviews, labels)
+
+review = "The movie was fantastic and enjoyable"
+prediction = model.predict([review])[0]
+
+print("Review:", review)
+print("Sentiment:", "Positive" if prediction == 1 else "Negative")
